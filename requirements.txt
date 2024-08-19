@@ -1,0 +1,9 @@
+ibm-watson-machine-learning
+langchain
+langchain-ibm
+langchain-experimental
+matplotlib
+seaborn
+streamlit
+python-dotenv
+langchain-openai
