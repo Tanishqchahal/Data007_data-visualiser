@@ -4,7 +4,7 @@ import pandas as pd
 from Openai_agent import get_response
 from func import execute_code
 
-st.set_page_config(page_title="Data007🕵️", page_icon="🕵️", layout="wide")
+st.set_page_config(page_title="Data007🕵️", page_icon="🕵️", layout="wide", initial_sidebar_state="expanded")
 
 def initialize_session_state():
     if "messages" not in st.session_state:
@@ -15,16 +15,21 @@ def initialize_session_state():
 initialize_session_state()
 
 st.title("Data007🕵️")
-st.write("Data analysis and visualization made easy")
+st.subheader("Data analysis and visualization made easy", divider="blue")
 
-file, reset = st.columns([1, 1])
-with file:
+with st.sidebar:
+    st.subheader("Data007🕵️")
+    st.write("Upload your CSV file and ask questions about your data.")
     uploaded_file = st.file_uploader("Choose a file", type=['csv'])
 
-with reset:
     if st.button("Reset", type='primary', use_container_width=True):
         del st.session_state['messages']
         initialize_session_state()
+    
+
+if uploaded_file is None:
+    st.write("Upload your CSV file to get started.")
+    st.image("data007.png", width=400)
 
 if uploaded_file is not None:
     st.spinner("Analyzing the data...")
